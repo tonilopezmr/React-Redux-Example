@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import './App.css';
+import './Counter.css';
 
 class Counter extends Component {
 
@@ -32,7 +32,7 @@ class Counter extends Component {
 
     showCounter(counter, idx, onIncrement, onDecrement) {
         return (
-            <div key={idx} >
+            <div className="App-intro" key={idx} >
                 <p>{counter}</p>
                 <button onClick={() => {onIncrement(idx)}}>
                     +

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Counter from './Counter';
+import Counter from './counter/Counter';
 import './index.css';
 
 import {createStore} from 'redux'
-import counter from './CounterCollection.reducer'
+import counter from './counter/CounterCollection.reducer'
 
 const store = createStore(counter)
 

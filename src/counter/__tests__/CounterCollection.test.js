@@ -7,12 +7,20 @@ import counterCollection from '../CounterCollection.reducer'
 
 describe('Counter collection should do', () => {
 
-    it('any action should be 0', () => {
+    it('initial state when undefined', () => {
         var stateAfter = [0]
 
         expect(
             counterCollection(undefined, {})
         ).toEqual(stateAfter)
+    })
+
+    it('same state when unknown action', () => {
+        var state = [10, 11, 12]
+
+        expect(
+            counterCollection(state, {type: 'ANYTHING'})
+        ).toEqual(state)
     })
 
     it('add new counter', () => {
@@ -45,6 +53,17 @@ describe('Counter collection should do', () => {
 
         expect(
             counterCollection(stateBefore, {type: 'INCREMENT', index: 0})
+        ).toEqual(stateAfter)
+    })
+
+    it('decrement counter from index', () => {
+        var stateBefore = [10, 11, 12]
+        var stateAfter = [10, 11, 11]
+
+        deepFreeze(stateBefore)
+
+        expect(
+            counterCollection(stateBefore, {type: 'DECREMENT', index: 2})
         ).toEqual(stateAfter)
     })
 })
