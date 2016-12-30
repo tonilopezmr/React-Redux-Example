@@ -4,24 +4,35 @@ import Counter from './Counter';
 import './index.css';
 
 import {createStore} from 'redux'
-import counter from './counter.reducer'
+import counter from './CounterCollection.reducer'
 
 const store = createStore(counter)
 
-function onIncrement() {
-    store.dispatch({ type: 'INCREMENT'})
+const onIncrement = (idx) => {
+    store.dispatch({ type: 'INCREMENT', index: idx})
 }
 
-function onDecrement() {
-    store.dispatch({ type: 'DECREMENT'})
+const onDecrement = (idx) => {
+    store.dispatch({ type: 'DECREMENT', index: idx})
 }
 
-function render() {
+const onAdd = () => {
+    store.dispatch({type: 'ADD'})
+}
+
+const onRemove = () => {
+    var length = store.getState().length;
+    store.dispatch({type: 'REMOVE', index: length === 0? 0 : length - 1})
+}
+
+const render = () => {
     ReactDOM.render(
         <Counter
             value={store.getState()}
             onIncrement={onIncrement}
             onDecrement={onDecrement}
+            onAdd={onAdd}
+            onRemove={onRemove}
         />,
         document.getElementById('root')
     );

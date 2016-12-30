@@ -1,6 +1,6 @@
 var expect = require('expect')
 
-import counter from './counter.reducer'
+import counter from '../Counter.reducer'
 
 describe('Counter should', () => {
 
