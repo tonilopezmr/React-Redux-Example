@@ -1,4 +1,3 @@
-
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
@@ -30,19 +29,15 @@ const Todos = ({
   </ul>
 )
 
-const mapStateToProps = (state) => {
-  return {
-    todos: todosFilter(state.todos, state.filter)
-  }
-}
+const mapStateToProps = (state) => ({
+  todos: todosFilter(state.todos, state.filter)
+})
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onToggle: (id) => {
-      dispatch(toggleTodo(id))
-    }
+const mapDispatchToProps = (dispatch) => ({
+  onToggle(id) {
+    dispatch(toggleTodo(id))
   }
-}
+})
 
 const TodoList = connect(
   mapStateToProps,

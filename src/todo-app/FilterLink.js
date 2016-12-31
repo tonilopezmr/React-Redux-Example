@@ -24,19 +24,15 @@ class Link extends Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
+const mapStateToProps = (state, ownProps) => ({
     active: ownProps.filter === state.filter
-  }
-}
+})
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-  return {
-    onClick: () => {
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    onClick() {
       dispatch(setFilter(ownProps.filter))
     }
-  }
-}
+})
 
 const FilterLink = connect(
   mapStateToProps,
