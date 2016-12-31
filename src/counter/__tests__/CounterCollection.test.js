@@ -36,12 +36,12 @@ describe('Counter collection should do', () => {
 
     it('remove counter from index', () => {
         var stateBefore = [10, 11, 12]
-        var stateAfter = [10, 12]
+        var stateAfter = [11, 12]
 
         deepFreeze(stateBefore)
 
         expect(
-            counterCollection(stateBefore, {type: 'REMOVE', index: 1})
+            counterCollection(stateBefore, {type: 'REMOVE', index: 0})
         ).toEqual(stateAfter)
     })
 

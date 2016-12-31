@@ -1,18 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Todos from './todo-app/Todos';
-import './index.css';
+import './TodoApp.index.css';
 
-import {createStore, combineReducers} from 'redux'
-import todos from './todo-app/Todo.reducer'
-import filter from './todo-app/VisibilityFilter.reducer'
+import {createStore} from 'redux'
+import todo from './Todo.reducer'
 
-const todoApp = combineReducers({
-    todos,
-    filter
-})
-
-const store = createStore(todoApp)
+const store = createStore(todo)
 
 const onAdd = (text) => {
     store.dispatch({type: 'ADD_TODO', text: text})
@@ -26,7 +20,7 @@ const onToggle = (id) => {
 const render = () => {
     ReactDOM.render(
         <Todos
-            todos={store.getState().todos}
+            todos={store.getState()}
             onAdd={onAdd}
             onToggle={onToggle}
         />,

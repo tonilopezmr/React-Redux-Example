@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import './Counter.css';
+import React, {Component} from 'react'
+import './Counter.css'
 
 class Counter extends Component {
 
@@ -45,4 +45,4 @@ class Counter extends Component {
     }
 }
 
-export default Counter;
+export default Counter
