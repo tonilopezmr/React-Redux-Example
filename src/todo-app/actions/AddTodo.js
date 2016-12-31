@@ -1,4 +1,3 @@
-'use strict'
 
 const addTodo = (text) => {
   return {

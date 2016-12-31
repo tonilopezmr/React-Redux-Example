@@ -1,4 +1,3 @@
-'use strict'
 
 const toggleTodo = (id) => {
   return {

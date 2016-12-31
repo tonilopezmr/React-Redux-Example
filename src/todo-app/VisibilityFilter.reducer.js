@@ -1,4 +1,3 @@
-'use strict'
 
 const visibilityFilter = (state = 'SHOW_ALL', action) => {
     switch(action.type) {

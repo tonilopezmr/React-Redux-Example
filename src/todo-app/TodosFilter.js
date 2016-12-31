@@ -1,4 +1,3 @@
-'use strict'
 
 const todosFilter = (todos = [], filter) => {
     switch(filter) {
