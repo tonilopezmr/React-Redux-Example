@@ -11,7 +11,7 @@ const FilterLink = ({
     children,
     onFilter
 }) => {
-    if(currentFilter === filter) {
+    if (currentFilter === filter) {
         return (<span>{children}</span>)
     }
 
@@ -22,12 +22,38 @@ const FilterLink = ({
     )
 }
 
+const Todo = ({
+    onClick,
+    text,
+    completed
+}) => (
+    <li onClick={onClick}>{
+        completed?
+            (<span className="Todo-completed">{text}</span>)
+            : text
+    }</li>
+)
+
+const TodoList = ({
+    todos,
+    onToggle
+}) => (
+    <ul>
+        {todos.map(todo =>
+            <Todo key={todo.id}
+                  onClick={() => onToggle(todo.id)}
+                  {...todo}
+            />)}
+    </ul>
+)
+
 class Todos extends Component {
 
     render() {
         const {
             todos,
-            filter
+            filter,
+            onToggle
         } = this.props
 
         return (
@@ -43,9 +69,10 @@ class Todos extends Component {
                 </button>
 
                 <h1>TODOS: </h1>
-                <ul>
-                    {this.renderTodos(todosFilter(todos, filter), this.props.onToggle)}
-                </ul>
+                <TodoList
+                    todos={todosFilter(todos, filter)}
+                    onToggle={onToggle}
+                />
 
                 Show:
                 {' '}
@@ -76,18 +103,6 @@ class Todos extends Component {
         )
     }
 
-    renderTodos(todos, onToggle) {
-        return todos.map(todo =>
-            (<li key={todo.id} onClick={() => onToggle(todo.id)}>{this.hasCompleted(todo)}</li>))
-    }
-
-    hasCompleted(todo) {
-        if (!todo.completed) {
-            return todo.text
-        }
-
-        return (<span className="Todo-completed">{todo.text}</span>)
-    }
 }
 
 export default Todos
