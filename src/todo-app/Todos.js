@@ -28,7 +28,7 @@ const Todo = ({
     completed
 }) => (
     <li onClick={onClick}>{
-        completed?
+        completed ?
             (<span className="Todo-completed">{text}</span>)
             : text
     }</li>
@@ -47,26 +47,41 @@ const TodoList = ({
     </ul>
 )
 
+const AddTodo = ({
+    onAdd
+}) => {
+    let input
+    return (
+        <div>
+            <input ref={node => input = node}
+                   type="text"
+                   placeholder="todo"/>
+            <button onClick={() => {
+                onAdd(input.value)
+                input.value = ''
+            }}>
+                Add Todo
+            </button>
+        </div>
+    )
+}
+
 class Todos extends Component {
 
     render() {
         const {
             todos,
             filter,
-            onToggle
+            onToggle,
+            onAdd,
+            setFilter
         } = this.props
 
         return (
             <div className="App">
-                <input ref={node => this.input = node}
-                       type="text"
-                       placeholder="todo"/>
-                <button onClick={() => {
-                    this.props.onAdd(this.input.value)
-                    this.input.value = ''
-                }}>
-                    Add Todo
-                </button>
+                <AddTodo
+                    onAdd={onAdd}
+                />
 
                 <h1>TODOS: </h1>
                 <TodoList
@@ -77,7 +92,7 @@ class Todos extends Component {
                 Show:
                 {' '}
                 <FilterLink
-                    onFilter={this.props.setFilter}
+                    onFilter={setFilter}
                     filter='SHOW_ALL'
                     currentFilter={filter}
                 >
@@ -85,7 +100,7 @@ class Todos extends Component {
                 </FilterLink>
                 {' '}
                 <FilterLink
-                    onFilter={this.props.setFilter}
+                    onFilter={setFilter}
                     filter='SHOW_COMPLETED'
                     currentFilter={filter}
                 >
@@ -93,7 +108,7 @@ class Todos extends Component {
                 </FilterLink>
                 {' '}
                 <FilterLink
-                    onFilter={this.props.setFilter}
+                    onFilter={setFilter}
                     filter='SHOW_UNCOMPLETED'
                     currentFilter={filter}
                 >
