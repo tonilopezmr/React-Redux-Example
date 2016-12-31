@@ -1,6 +1,5 @@
 'use strict'
 
-
 const todosFilter = (todos = [], filter) => {
     switch(filter) {
         case 'SHOW_ALL':

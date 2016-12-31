@@ -5,7 +5,7 @@ const deepFreeze = require('deep-freeze')
 
 import todosFilter from '../TodosFilter'
 
-describe('Todos filter should', () => {
+describe('TodoApp filter should', () => {
     it('show all when the filter is SHOW_ALL', () => {
         const stateBefore = [{
             id: 0,
