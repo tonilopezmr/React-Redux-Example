@@ -3,6 +3,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
+import addTodo from './actions/AddTodo'
+
 let AddTodo = ({ dispatch }) => {
   let input
   return (
@@ -11,10 +13,7 @@ let AddTodo = ({ dispatch }) => {
              type="text"
              placeholder="todo"/>
       <button onClick={() => {
-        dispatch({
-          type: 'ADD_TODO',
-          text: input.value
-        })
+        dispatch(addTodo(input.value))
         input.value = ''
       }}>
         Add Todo
@@ -22,6 +21,7 @@ let AddTodo = ({ dispatch }) => {
     </div>
   )
 }
+
 AddTodo = connect()(AddTodo)
 
 export default AddTodo

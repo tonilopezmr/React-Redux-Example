@@ -3,6 +3,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
+import setFilter from './actions/SetFilter'
+
 class Link extends Component {
   render() {
     const {
@@ -32,10 +34,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onClick: () => {
-      dispatch({
-        type: 'SET_VISIBILITY_FILTER',
-        filter: ownProps.filter
-      })
+      dispatch(setFilter(ownProps.filter))
     }
   }
 }

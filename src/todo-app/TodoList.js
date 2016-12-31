@@ -2,7 +2,9 @@
 
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+
 import todosFilter from './TodosFilter'
+import toggleTodo from './actions/ToggleTodo'
 
 const Todo = ({
   onClick,
@@ -38,10 +40,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onToggle: (id) => {
-      dispatch({
-        type: 'TOGGLE_TODO',
-        id
-      })
+      dispatch(toggleTodo(id))
     }
   }
 }
