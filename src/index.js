@@ -19,16 +19,20 @@ const onAdd = (text) => {
 }
 
 const onToggle = (id) => {
-    console.log("onToggle id: "+ id)
     store.dispatch({type: 'TOGGLE_TODO', id: id})
+}
+
+const setFilter = (filter) => {
+    store.dispatch({type: 'SET_VISIBILITY_FILTER', filter: filter})
 }
 
 const render = () => {
     ReactDOM.render(
         <Todos
-            todos={store.getState().todos}
+            {...store.getState()}
             onAdd={onAdd}
             onToggle={onToggle}
+            setFilter={setFilter}
         />,
         document.getElementById('root')
     );

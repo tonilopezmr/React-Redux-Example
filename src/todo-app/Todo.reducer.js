@@ -38,7 +38,6 @@ const todo = (state = [], action) => {
     switch (action.type) {
         case 'ADD_TODO':
             return addTodo(state, action.text)
-
         case 'REMOVE_TODO':
             return removeTodo(state, action.id)
         case 'TOGGLE_TODO':
