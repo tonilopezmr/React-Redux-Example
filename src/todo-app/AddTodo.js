@@ -1,10 +1,9 @@
-
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import addTodo from './actions/AddTodo'
+import addTodo from './actions/addTodo'
 
-let AddTodo = ({ dispatch }) => {
+let AddTodo = ({dispatch}) => {
   let input
   return (
     <div>

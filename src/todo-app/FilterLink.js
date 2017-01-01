@@ -1,8 +1,7 @@
-
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import setFilter from './actions/SetFilter'
+import setFilter from './actions/setFilter'
 
 class Link extends Component {
   render() {
@@ -25,13 +24,13 @@ class Link extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    active: ownProps.filter === state.filter
+  active: ownProps.filter === state.filter
 })
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    onClick() {
-      dispatch(setFilter(ownProps.filter))
-    }
+  onClick() {
+    dispatch(setFilter(ownProps.filter))
+  }
 })
 
 const FilterLink = connect(

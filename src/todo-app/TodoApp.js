@@ -24,7 +24,6 @@ const Footer = () => (
   </div>
 )
 
-
 class TodoApp extends Component {
   render() {
     return (
