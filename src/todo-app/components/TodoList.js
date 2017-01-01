@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import todosFilter from './todosFilter'
-import toggleTodo from './actions/toggleTodo'
+import todosFilter from '../reducers/todosFilter'
+import toggleTodo from '../actions/toggleTodo'
 
 const Todo = ({
   onClick,

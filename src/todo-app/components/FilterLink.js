@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
-import setFilter from './actions/setFilter'
+import setFilter from '../actions/setFilter'
 
 class Link extends Component {
   render() {
