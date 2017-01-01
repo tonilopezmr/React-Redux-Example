@@ -2,9 +2,9 @@ import React, {Component} from 'react'
 
 import '../TodoApp.css';
 
-import FilterLink from './components/FilterLink'
-import AddTodo from './components/AddTodo'
-import TodoList from './components/TodoList'
+import FilterLink from './FilterLink'
+import AddTodo from './AddTodo'
+import TodoList from './TodoList'
 
 const Footer = () => (
   <div>
