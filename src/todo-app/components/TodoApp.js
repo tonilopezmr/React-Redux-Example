@@ -26,16 +26,11 @@ const Footer = () => (
 
 class TodoApp extends Component {
   render() {
-    const {
-      params
-    } = this.props
     return (
       <div className="App">
         <AddTodo />
         <br/>
-        <TodoList
-          filter={params.filter || 'all'}
-        />
+        <TodoList />
         <br/>
         <Footer />
       </div>

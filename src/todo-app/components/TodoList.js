@@ -1,8 +1,9 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 
 import todosFilter from '../reducers/todosFilter'
-import { toggleTodo } from '../actions'
+import {toggleTodo} from '../actions'
 
 const Todo = ({
   onClick,
@@ -29,19 +30,13 @@ const Todos = ({
   </ul>
 )
 
-const mapStateToProps = (state, ownProps) => ({
-  todos: todosFilter(state.todos, ownProps.filter)
+const mapStateToProps = (state, {params}) => ({
+  todos: todosFilter(state.todos, params.filter)
 })
 
-const mapDispatchToProps = (dispatch) => ({
-  onToggle(id) {
-    dispatch(toggleTodo(id))
-  }
-})
-
-const TodoList = connect(
+const TodoList = withRouter(connect(
   mapStateToProps,
-  mapDispatchToProps
-)(Todos)
+  {onToggle: toggleTodo}
+)(Todos))
 
 export default TodoList
