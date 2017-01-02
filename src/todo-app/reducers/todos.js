@@ -43,3 +43,16 @@ const todo = (state = [], action) => {
 }
 
 export default todo
+
+export const todosFilter = (state, filter) => {
+  switch (filter) {
+    case 'all':
+      return state
+    case 'completed':
+      return state.filter(todo => todo.completed)
+    case 'uncompleted':
+      return state.filter(todo => !todo.completed)
+    default:
+      return state
+  }
+}

@@ -3,7 +3,7 @@
 const expect = require('expect')
 const deepFreeze = require('deep-freeze')
 
-import todosFilter from '../reducers/todosFilter'
+import {todosFilter} from '../reducers'
 
 describe('TodoApp filter should', () => {
   it('show all when the filter is SHOW_ALL', () => {

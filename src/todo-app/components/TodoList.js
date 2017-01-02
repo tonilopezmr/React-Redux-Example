@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {withRouter} from 'react-router'
 
-import todosFilter from '../reducers/todosFilter'
+import {todosFilter} from '../reducers'
 import {toggleTodo} from '../actions'
 
 const Todo = ({
@@ -31,7 +31,7 @@ const Todos = ({
 )
 
 const mapStateToProps = (state, {params}) => ({
-  todos: todosFilter(state.todos, params.filter)
+  todos: todosFilter(state, params.filter)
 })
 
 const TodoList = withRouter(connect(
