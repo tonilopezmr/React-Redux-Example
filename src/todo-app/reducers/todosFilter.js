@@ -1,10 +1,10 @@
 const todosFilter = (todos = [], filter) => {
   switch (filter) {
-    case 'SHOW_ALL':
+    case 'all':
       return todos
-    case 'SHOW_COMPLETED':
+    case 'completed':
       return todos.filter(todo => todo.completed)
-    case 'SHOW_UNCOMPLETED':
+    case 'uncompleted':
       return todos.filter(todo => !todo.completed)
     default:
       return todos

@@ -1,41 +1,15 @@
 import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import {Link} from 'react-router'
 
-import setFilter from '../actions/setFilter'
-
-class Link extends Component {
-  render() {
-    const {
-      active,
-      children,
-      onClick
-    } = this.props
-
-    if (active) {
-      return (<span>{children}</span>)
-    }
-
-    return (
-      <a href="#" onClick={onClick}>
-        {children}
-      </a>
-    )
-  }
-}
-
-const mapStateToProps = (state, ownProps) => ({
-  active: ownProps.filter === state.filter
-})
-
-const mapDispatchToProps = (dispatch, ownProps) => ({
-  onClick() {
-    dispatch(setFilter(ownProps.filter))
-  }
-})
-
-const FilterLink = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Link)
+const FilterLink = ({filter, children}) => (
+  <Link
+    to={filter === 'all' ? '' : filter}
+    activeStyle={{
+      textDecoration: 'none',
+      color: 'black',
+    }}>
+    {children}
+  </Link>
+)
 
 export default FilterLink

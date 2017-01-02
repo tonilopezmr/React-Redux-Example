@@ -10,15 +10,15 @@ const Footer = () => (
   <div>
     Show:
     {' '}
-    <FilterLink filter='SHOW_ALL'>
+    <FilterLink filter='all'>
       All
     </FilterLink>
     {' '}
-    <FilterLink filter='SHOW_COMPLETED'>
+    <FilterLink filter='completed'>
       Completed
     </FilterLink>
     {' '}
-    <FilterLink filter='SHOW_UNCOMPLETED'>
+    <FilterLink filter='uncompleted'>
       Uncompleted
     </FilterLink>
   </div>
@@ -26,11 +26,16 @@ const Footer = () => (
 
 class TodoApp extends Component {
   render() {
+    const {
+      params
+    } = this.props
     return (
       <div className="App">
         <AddTodo />
         <br/>
-        <TodoList />
+        <TodoList
+          filter={params.filter || 'all'}
+        />
         <br/>
         <Footer />
       </div>

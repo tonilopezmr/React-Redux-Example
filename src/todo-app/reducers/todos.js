@@ -21,7 +21,7 @@ const removeTodo = (state, id) => {
 
 const toggleTodo = (state, id) => {
   return state.map(todo => {
-    if (todo.id != id) {
+    if (todo.id !== id) {
       return todo
     }
 

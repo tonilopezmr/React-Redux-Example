@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 
 import todosFilter from '../reducers/todosFilter'
-import toggleTodo from '../actions/toggleTodo'
+import { toggleTodo } from '../actions'
 
 const Todo = ({
   onClick,
@@ -29,8 +29,8 @@ const Todos = ({
   </ul>
 )
 
-const mapStateToProps = (state) => ({
-  todos: todosFilter(state.todos, state.filter)
+const mapStateToProps = (state, ownProps) => ({
+  todos: todosFilter(state.todos, ownProps.filter)
 })
 
 const mapDispatchToProps = (dispatch) => ({
