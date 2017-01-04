@@ -1,43 +1,21 @@
-import {createStore} from 'redux'
+import {createStore, applyMiddleware} from 'redux'
 import {loadState, saveState} from './localStorage'
 import todoApp from './reducers'
 import stubTodos from './stubs/stubTodos'
+import createLogger from 'redux-logger'
+import thunk from 'redux-thunk'
 
-function addLoggingToDispatch(store) {
-  const rawDispatch = store.dispatch
-  if (!console.group) {
-    return rawDispatch
-  }
-
-  return (action) => {
-    console.group(action.type)
-    console.log('%c prev state', 'color: gray', store.getState())
-    console.log('%c action', 'color: red', action)
-    const rawReturnValue = rawDispatch(action)
-    console.log('%c next state', 'color: green', store.getState())
-    console.log()
-    console.groupEnd(action.type)
-    return rawReturnValue
-  }
-}
 
 const configureStore = () => {
   const persistedTodos = loadState()
   const todos = persistedTodos === undefined ? stubTodos : persistedTodos
 
-  var store = createStore(todoApp, todos);
-
-  if(process.env.NODE_ENV !== 'production') {
-    store.dispatch = addLoggingToDispatch(store)
+  const middlewares = [thunk]
+  if (process.env.NODE_ENV !== 'production') {
+    middlewares.push(createLogger())
   }
 
-  store.subscribe(() => {
-    saveState({
-      todos: store.getState().todos
-    })
-  })
-
-  return store
+  return createStore(todoApp, todos, applyMiddleware(...middlewares))
 }
 
 export default configureStore

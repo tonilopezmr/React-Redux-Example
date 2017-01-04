@@ -3,7 +3,7 @@
 const expect = require('expect')
 const deepFreeze = require('deep-freeze')
 
-import todo from '../reducers/todos'
+import todo from '../reducers/index'
 
 describe('todo should do', () => {
 
