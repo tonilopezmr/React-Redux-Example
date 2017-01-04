@@ -15,7 +15,7 @@ const configureStore = () => {
     middlewares.push(createLogger())
   }
 
-  return createStore(todoApp, todos, applyMiddleware(...middlewares))
+  return createStore(todoApp, applyMiddleware(...middlewares))
 }
 
 export default configureStore

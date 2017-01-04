@@ -23,8 +23,32 @@ const fakeDataBase = {
 const delay = (ms) =>
   new Promise(resolve => setTimeout(resolve, ms))
 
+export const addTodo = (text) =>
+  delay(500).then(() => {
+    const todo = {
+      id: v4(),
+      text,
+      completed: false
+    };
+    fakeDataBase.todos.push(todo)
+    return todo
+  })
+
+export const toggleTodo = (id) => {
+  delay(500).then(() => {
+    const todo = fakeDataBase.todos
+      .find(todo => todo.id === id);
+    todo.completed = !todo.completed
+    return todo
+  })
+}
+
 export const fetchTodos = (filter) =>
-  delay(5000).then(() => {
+  delay(500).then(() => {
+    if(Math.random() > 0.8) {
+      throw new Error("In your face")
+    }
+
     const todos = fakeDataBase.todos
     switch (filter) {
       case 'all':
