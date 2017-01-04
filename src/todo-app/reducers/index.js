@@ -1,11 +1,12 @@
 import {combineReducers} from 'redux'
 import byId, * as fromById from './byId'
 import createList, * as fromList from './createList'
+import * as filter from '../constants/filterTypes'
 
 const listByFilter = combineReducers({
-  'all': createList('all'),
-  'completed': createList('completed'),
-  'uncompleted': createList('uncompleted')
+  'all': createList(filter.ALL),
+  'completed': createList(filter.ALL),
+  'uncompleted': createList(filter.UNCOMPLETED)
 })
 
 const todos = combineReducers({

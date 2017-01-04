@@ -1,5 +1,5 @@
 import {v4} from 'node-uuid'
-
+import {ALL, COMPLETED, UNCOMPLETED} from '../constants/filterTypes'
 const fakeDataBase = {
   todos: [{
     id: v4(),
@@ -50,11 +50,11 @@ export const fetchTodos = (filter) =>
 
     const todos = fakeDataBase.todos
     switch (filter) {
-      case 'all':
+      case ALL:
         return todos
-      case 'completed':
+      case COMPLETED:
         return todos.filter(todo => todo.completed)
-      case 'uncompleted':
+      case UNCOMPLETED:
         return todos.filter(todo => !todo.completed)
       default:
         return todos
