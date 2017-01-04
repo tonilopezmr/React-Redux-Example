@@ -34,18 +34,17 @@ export const addTodo = (text) =>
     return todo
   })
 
-export const toggleTodo = (id) => {
+export const toggleTodo = (id) =>
   delay(500).then(() => {
     const todo = fakeDataBase.todos
       .find(todo => todo.id === id);
     todo.completed = !todo.completed
     return todo
   })
-}
 
 export const fetchTodos = (filter) =>
   delay(500).then(() => {
-    if(Math.random() > 0.8) {
+    if (Math.random() > 0.8) {
       throw new Error("In your face")
     }
 

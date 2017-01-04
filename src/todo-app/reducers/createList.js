@@ -1,6 +1,18 @@
 import {combineReducers} from 'redux'
 
 const createList = (filter) => {
+  const handleToggle = (state, action) => {
+    const {result: toggledId, entities} = action.response
+    const {completed} = entities.todos[toggledId]
+    const shouldRemove = (
+      (completed && filter === 'uncompleted') ||
+      (!completed && filter === 'completed')
+    )
+    return shouldRemove ?
+      state.filter(id => id !== toggledId) :
+      state
+  }
+
   const ids = (state = [], action) => {
 
     switch (action.type) {
@@ -9,9 +21,11 @@ const createList = (filter) => {
           action.response.result :
           state
       case 'ADD_TODO_SUCCESS':
-        return filter !== 'completed'?
+        return filter !== 'completed' ?
           [...state, action.response.result] :
           state
+      case 'TOGGLE_TODO_SUCCESS':
+        return handleToggle(state, action)
       default:
         return state
     }
