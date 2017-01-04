@@ -5,7 +5,7 @@ import * as filter from '../constants/filterTypes'
 
 const listByFilter = combineReducers({
   'all': createList(filter.ALL),
-  'completed': createList(filter.ALL),
+  'completed': createList(filter.COMPLETED),
   'uncompleted': createList(filter.UNCOMPLETED)
 })
 
