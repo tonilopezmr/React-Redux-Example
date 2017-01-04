@@ -1,7 +1,7 @@
 const expect = require('expect')
 const deepFreeze = require('deep-freeze')
 
-import {todosFilter} from '../reducers'
+import {todosFilter} from '../../reducers'
 import {ALL, COMPLETED, UNCOMPLETED} from '../../constants/filterTypes'
 
 /**
