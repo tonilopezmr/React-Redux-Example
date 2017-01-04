@@ -1,5 +1,6 @@
 import {v4} from 'node-uuid'
-import {ALL, COMPLETED, UNCOMPLETED} from '../constants/filterTypes'
+import {ALL, COMPLETED, UNCOMPLETED} from './constants/filterTypes'
+
 const fakeDataBase = {
   todos: [{
     id: v4(),

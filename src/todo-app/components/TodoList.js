@@ -5,6 +5,7 @@ import {withRouter} from 'react-router'
 import {todosFilter, getIsFetching, getErrorMessage} from '../reducers'
 import * as actions from '../actions'
 import FetchError from './FetchError'
+import {ALL} from '../constants/filterTypes'
 
 class TodoList extends Component {
   componentDidMount() {
@@ -69,7 +70,7 @@ const Todos = ({
 )
 
 const mapStateToProps = (state, {params}) => {
-  const filter = params.filter || 'all'
+  const filter = params.filter || ALL
   return {
     todos: todosFilter(state, filter),
     errorMessage: getErrorMessage(state, filter),

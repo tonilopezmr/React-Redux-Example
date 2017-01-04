@@ -1,18 +1,36 @@
-'use strict'
-
 const expect = require('expect')
 const deepFreeze = require('deep-freeze')
 
 import {todosFilter} from '../reducers'
+import {ALL, COMPLETED, UNCOMPLETED} from '../constants/filterTypes'
 
 describe('TodoApp filter should', () => {
-  it('show all when the filter is SHOW_ALL', () => {
-    const stateBefore = [{
-      id: 0,
+  it('show all when the filter is all', () => {
+    const stateBefore = {
+      byId: {
+        0: {
+          id: '0',
+          text: 'Add filter',
+          completed: true
+        },
+        1: {
+          id: '1',
+          text: 'Learn redux',
+          completed: false
+        }
+      },
+      listByFilter: {
+        'all': {
+          ids: [0, 1]
+        }
+      }
+    }
+    const result = [{
+      id: '0',
       text: 'Add filter',
       completed: true
     }, {
-      id: 1,
+      id: '1',
       text: 'Learn redux',
       completed: false
     }]
@@ -20,22 +38,32 @@ describe('TodoApp filter should', () => {
     deepFreeze(stateBefore)
 
     expect(
-      todosFilter(stateBefore, 'SHOW_ALL')
-    ).toEqual(stateBefore)
+      todosFilter(stateBefore, ALL)
+    ).toEqual(result)
   })
 
   it('show completed todos', () => {
-    const stateBefore = [{
-      id: 0,
-      text: 'Add filter',
-      completed: true
-    }, {
-      id: 1,
-      text: 'Learn redux',
-      completed: false
-    }]
-    const stateAfter = [{
-      id: 0,
+    const stateBefore = {
+      byId: {
+        0: {
+          id: '0',
+          text: 'Add filter',
+          completed: true
+        },
+        1: {
+          id: '1',
+          text: 'Learn redux',
+          completed: false
+        }
+      },
+      listByFilter: {
+        'completed': {
+          ids: [0]
+        }
+      }
+    }
+    const result = [{
+      id: '0',
       text: 'Add filter',
       completed: true
     }]
@@ -43,22 +71,32 @@ describe('TodoApp filter should', () => {
     deepFreeze(stateBefore)
 
     expect(
-      todosFilter(stateBefore, 'SHOW_COMPLETED')
-    ).toEqual(stateAfter)
+      todosFilter(stateBefore, COMPLETED)
+    ).toEqual(result)
   })
 
   it('show uncompleted todos', () => {
-    const stateBefore = [{
-      id: 0,
-      text: 'Add filter',
-      completed: true
-    }, {
-      id: 1,
-      text: 'Learn redux',
-      completed: false
-    }]
-    const stateAfter = [{
-      id: 1,
+    const stateBefore = {
+      byId: {
+        0: {
+          id: '0',
+          text: 'Add filter',
+          completed: true
+        },
+        1: {
+          id: '1',
+          text: 'Learn redux',
+          completed: false
+        }
+      },
+      listByFilter: {
+        'uncompleted': {
+          ids: [1]
+        }
+      }
+    }
+    const result = [{
+      id: '1',
       text: 'Learn redux',
       completed: false
     }]
@@ -66,7 +104,7 @@ describe('TodoApp filter should', () => {
     deepFreeze(stateBefore)
 
     expect(
-      todosFilter(stateBefore, 'SHOW_UNCOMPLETED')
-    ).toEqual(stateAfter)
+      todosFilter(stateBefore, UNCOMPLETED)
+    ).toEqual(result)
   })
 })
