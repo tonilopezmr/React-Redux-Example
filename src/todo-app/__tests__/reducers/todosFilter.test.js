@@ -2,7 +2,11 @@ const expect = require('expect')
 const deepFreeze = require('deep-freeze')
 
 import {todosFilter} from '../reducers'
-import {ALL, COMPLETED, UNCOMPLETED} from '../constants/filterTypes'
+import {ALL, COMPLETED, UNCOMPLETED} from '../../constants/filterTypes'
+
+/**
+ * I want to know that give a state with a filter, it returns a correct result
+ */
 
 describe('TodoApp filter should', () => {
   it('show all when the filter is all', () => {
