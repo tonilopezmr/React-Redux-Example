@@ -9,13 +9,22 @@ import * as types from '../../constants/actionTypes'
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 
-describe('actions creators should', () => {
+describe('action creators', () => {
 
-  it('creates ADD_TODO_SUCCESS when create a todo', () => {
+  describe('addTodo should return', () => {
 
-    const expectedActions = [{
-      type: types.ADD_TODO_SUCCESS,
-      response: {
+    it('type ADD_TODO_SUCCESS', () => {
+      const store = mockStore({})
+
+      return store.dispatch(actions.addTodo('add todo'))
+        .then(() => {
+          expect(store.getActions()[0].type).toEqual(types.ADD_TODO_SUCCESS)
+        })
+    })
+
+    it('normalized response', () => {
+
+      const expectedResponse = {
         result: '11-id',
         entities: {
           todos: {
@@ -27,14 +36,24 @@ describe('actions creators should', () => {
           }
         },
       }
-    }]
 
-    const store = mockStore({})
+      const store = mockStore({})
 
-    return store.dispatch(actions.addTodo('add todo'))
-      .then(() => {
-        expect(store.getActions()).toEqual(expectedActions)
-      })
+      return store.dispatch(actions.addTodo('add todo'))
+        .then(() => {
+          expect(store.getActions()[0].response).toEqual(expectedResponse)
+        })
+    })
+
+    it('only two elements', () => {
+      const store = mockStore({})
+
+      return store.dispatch(actions.addTodo('add todo'))
+        .then(() => {
+          var action = store.getActions()[0];
+          expect(Object.keys(action).length).toEqual(2)
+        })
+    })
   })
 
 })

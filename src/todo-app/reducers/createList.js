@@ -2,7 +2,7 @@ import {combineReducers} from 'redux'
 import * as types from '../constants/actionTypes'
 import {COMPLETED, UNCOMPLETED} from '../constants/filterTypes'
 
-const createList = (filter) => {
+export const createIds = (filter) => {
   const handleToggle = (state, action) => {
     const {result: toggledId, entities} = action.response
     const {completed} = entities.todos[toggledId]
@@ -16,7 +16,6 @@ const createList = (filter) => {
   }
 
   const ids = (state = [], action) => {
-
     switch (action.type) {
       case types.FETCH_TODOS_SUCCESS:
         return action.filter === filter ?
@@ -32,6 +31,12 @@ const createList = (filter) => {
         return state
     }
   }
+
+  return ids
+}
+
+const createList = (filter) => {
+
 
   const isFetching = (state = false, action) => {
     if (action.filter !== filter) {
@@ -67,7 +72,7 @@ const createList = (filter) => {
   }
 
   return combineReducers({
-    ids,
+    ids: createIds(filter),
     isFetching,
     errorMessage
   })
